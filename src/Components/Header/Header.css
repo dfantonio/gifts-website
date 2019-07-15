@@ -1,0 +1,17 @@
+.left {
+  /* flex: 25%; */
+  float: left;
+}
+
+.center {
+  /* flex: 50%; */
+}
+
+.right {
+  /* flex: 25%; */
+  float: right;
+}
+
+.a {
+  flex-direction: row;
+}
