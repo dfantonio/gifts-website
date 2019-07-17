@@ -1,23 +1,39 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
+import "./Header.css";
+import moment from "moment";
 
 /**
  * @author Antônio D. F.
  * @description Header
  * @copyright 07/2019
  */
-function Header({ title, birthday }) {
-  return (
-    <div style={{ overflow: "hidden" }}>
-      <p style={{ float: "left", backgroundColor: "red" }}>content1</p>
-      <p style={{ float: "left", textAlign: "center", width: "33%" }}>a</p>
-      <p style={{ float: "right", backgroundColor: "green" }}>content2</p>
-    </div>
-  );
+class Header extends Component {
+  renderDate = () => {
+    const a = moment([2019, 8 - 1, 9]);
+    const diff = a.diff(moment(), "days") + 1;
+    const text = diff == 1 ? "Falta apenas 1 dia" : "Faltam " + diff + " dias";
+    return (
+      <div>
+        <h3>09/08/2019</h3>
+        <h4>{text}</h4>
+      </div>
+    );
+  };
+
+  render() {
+    return (
+      <div className="container">
+        <div>A</div>
+        <div>{this.props.title}</div>
+        <div>{this.renderDate()}</div>
+      </div>
+    );
+  }
 }
 
 Header.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   birthday: PropTypes.string
 };
 

@@ -10,15 +10,7 @@ class home extends Component {
     return (
       <div className="App">
         <Header title="Teste" />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload. ANTÔnio
-          </p>
-          <Link className="App-link" to="/sobre">
-            Learn React
-          </Link>
-        </header>
+        <div className="App-header" />
       </div>
     );
   }
