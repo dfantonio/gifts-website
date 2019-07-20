@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center"
   },
   GreatVibes: {
-    fontFamily: "Great Vibes"
+    // fontFamily: "Great Vibes"
   }
 }));
 
@@ -36,16 +36,11 @@ const NavBar = () => {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Typography
-            variant="h4"
-            className={[classes.title, classes.GreatVibes]}
-          >
+          <Typography variant="h4" className={classes.title}>
             Lucas | Aniversário
           </Typography>
-          <Typography className={classes.title}>
+          <Typography variant="inherit" className={classes.title}>
             {renderDate()}
-            {/* <Typography variant="h5">News</Typography>
-            <Typography variant="h6">Old</Typography> */}
           </Typography>
         </Toolbar>
       </AppBar>
