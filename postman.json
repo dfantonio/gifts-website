@@ -1,0 +1,53 @@
+{
+	"variables": [],
+	"info": {
+		"name": "app",
+		"_postman_id": "31af3396-ec7f-7191-3a7f-1bb13f823c6a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add presente",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ListAll",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Toggle",
+			"request": {
+				"url": "http://lista-de-presentes-do-lucas.appspot.com/gifts/toggle",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"gift\": \"Monitor\",\n\t\"name\":\"\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
