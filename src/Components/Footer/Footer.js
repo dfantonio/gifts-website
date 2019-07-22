@@ -97,7 +97,7 @@ export default function StickyFooter({ onClick, payload }) {
               }
             }}
           >
-            Accept terms
+            Submeter Presente(s)
           </Button>
           {loading && (
             <CircularProgress size={24} className={classes.buttonProgress} />
