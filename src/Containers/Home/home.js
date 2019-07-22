@@ -5,7 +5,6 @@ import CheckboxList from "./../../Components/CheckboxList/CheckboxList";
 import NavBar from "./../../Components/NavBar/NavBar";
 import Footer from "./../../Components/Footer/Footer";
 import Loader from "./../../Components/Loader/Loader";
-import Button from "@material-ui/core/Button";
 
 const axios = require("axios");
 axios.defaults.baseURL = "https://lista-de-presentes-do-lucas.appspot.com";
@@ -66,9 +65,12 @@ class home extends Component {
         .catch(function(error) {
           console.log("erro: ", error);
         });
+
+      return true;
     });
   };
 
+  //TODO The submit button is needing scroll on mobile
   render() {
     const { data, loading } = this.state;
     return (

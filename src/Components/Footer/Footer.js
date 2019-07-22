@@ -67,16 +67,7 @@ export default function StickyFooter({ onClick, payload }) {
       setLoading(false);
       setOldPayload(payload);
     }
-  });
-
-  function handleButtonClick() {
-    if (!loading && payload) {
-      // timer.current = setTimeout(() => {
-      //   setSuccess(true);
-      //   setLoading(false);
-      // }, 2000);
-    }
-  }
+  }, [oldPayload, payload]);
 
   return (
     <div>
@@ -97,7 +88,7 @@ export default function StickyFooter({ onClick, payload }) {
               }
             }}
           >
-            Submeter Presente(s)
+            Confirma esse presente?
           </Button>
           {loading && (
             <CircularProgress size={24} className={classes.buttonProgress} />
