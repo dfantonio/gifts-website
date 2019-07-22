@@ -4,8 +4,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,60 +25,129 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 20,
     border: "solid",
     borderColor: theme.palette.secondary.main
+  },
+  paper: {
+    position: "absolute",
+    width: "50%",
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    marginLeft: "25%",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 4),
+    outline: "none"
   }
 }));
 
-export default function CheckboxList(data, { onChange }) {
-  data = data.data;
+export default function CheckboxList({ data, onChange }) {
   const classes = useStyles();
   const [state, setState] = React.useState(data);
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [userName, setUserName] = React.useState("");
+  const [userMessage, setUserMessage] = React.useState("");
+  const [indexa, setIndex] = React.useState(0);
 
-  useEffect(() => {
-    console.log("useEffect: ", state);
-    // do something when value changes
-  }, [state]);
-
-  const handleToggle = index => () => {
-    setState(prevState =>
-      prevState.map((value, ArrIndex) =>
-        ArrIndex === index ? { ...value, check: !value.check } : value
-      )
+  const setNewState = () => {
+    const index = indexa;
+    let newData = state.map((value, ArrIndex) =>
+      ArrIndex === index ? { ...value, check: !value.check } : value
     );
-    // console.log(onChange());
-    // if (state[index].check) onChange(state[index].gift);
+    setState(newData);
+    newData[index].name = userName;
+    newData[index].message = userMessage;
+    onChange(newData[index]);
   };
 
-  const renderList = (item, index) => {};
+  const handleToggle = index => () => {
+    setModalVisible(true);
+    setIndex(index);
+  };
+
+  const renderList = () => {
+    return state.map((value, index) => {
+      return (
+        <ListItem
+          key={index}
+          dense
+          button
+          divider
+          onClick={handleToggle(index)}
+          disabled={value.check}
+        >
+          <ListItemIcon>
+            <Checkbox
+              edge="start"
+              checked={value.check}
+              tabIndex={-1}
+              disableRipple
+            />
+          </ListItemIcon>
+          <ListItemText
+            style={{ textAlign: "center" }}
+            id={index}
+            primary={value.gift}
+          />
+        </ListItem>
+      );
+    });
+  };
+
+  const renderModal = () => {
+    return (
+      <Dialog
+        open={modalVisible}
+        onClose={() => setModalVisible(false)}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Confirmação</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Para garantir a sua reserva, coloque o seu nome e uma mensagem para
+            o Lucas (opcional)
+          </DialogContentText>
+          <TextField
+            margin="dense"
+            id="name"
+            label="Nome*"
+            type="text"
+            fullWidth
+            onChange={e => {
+              setUserName(e.target.value);
+            }}
+          />
+          <TextField
+            margin="dense"
+            id="message"
+            label="Mensagem"
+            type="text"
+            multiline
+            fullWidth
+            onChange={e => {
+              setUserMessage(e.target.value);
+            }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setModalVisible(false)} color="primary">
+            Cancelar
+          </Button>
+          <Button
+            onClick={() => {
+              setModalVisible(false);
+              setNewState();
+            }}
+            color="primary"
+          >
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  };
 
   return (
     <List className={classes.root}>
-      {state.map((value, index) => {
-        return (
-          <ListItem
-            key={index}
-            role={undefined}
-            dense
-            button
-            divider
-            onClick={handleToggle(index)}
-          >
-            <ListItemIcon>
-              <Checkbox
-                edge="start"
-                checked={value.check}
-                tabIndex={-1}
-                disableRipple
-                // inputProps={{ "aria-labelledby": labelId }}
-              />
-            </ListItemIcon>
-            <ListItemText
-              style={{ textAlign: "center" }}
-              id={index}
-              primary={value.gift}
-            />
-          </ListItem>
-        );
-      })}
+      {renderModal()}
+      {renderList()}
     </List>
   );
 }
