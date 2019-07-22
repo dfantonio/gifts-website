@@ -136,6 +136,7 @@ export default function CheckboxList({ data, onChange }) {
               setNewState();
             }}
             color="primary"
+            disabled={!userName}
           >
             Confirmar
           </Button>
