@@ -1,54 +1,88 @@
 import React, { Component } from "react";
 import "./home.css";
 
-import NavBar from "./../../Components/NavBar/NavBar";
 import CheckboxList from "./../../Components/CheckboxList/CheckboxList";
-import Button from "@material-ui/core/Button";
+import NavBar from "./../../Components/NavBar/NavBar";
 import Footer from "./../../Components/Footer/Footer";
-const data = [
-  {
-    check: true,
-    gift: "ps4",
-    name: "Oswaldo"
-  },
-  {
-    check: false,
-    gift: "Monitor",
-    name: ""
-  },
-  {
-    check: false,
-    gift: "Aranha de borracha",
-    name: ""
-  }
-];
+import Loader from "./../../Components/Loader/Loader";
+import Button from "@material-ui/core/Button";
+
+const axios = require("axios");
+axios.defaults.baseURL = "https://lista-de-presentes-do-lucas.appspot.com";
 
 class home extends Component {
   state = {
-    presentes: []
+    presentes: [],
+    data: [],
+    loading: true
+  };
+
+  componentDidMount = () => {
+    axios
+      .get("/gifts")
+      .then(response => {
+        console.log("resposta: ", response.data);
+        this.setState({ data: response.data, loading: false });
+      })
+      .catch(function(error) {
+        console.log("erro: ", error);
+      })
+      .finally(function() {
+        // always executed
+      });
   };
 
   onChange = obj => {
     this.setState({ presentes: [...this.state.presentes, obj] }, () => {
-      console.log("state: ", this.state.presentes);
+      console.log("state/home: ", this.state.presentes);
+    });
+  };
+
+  //Func para matar tempo
+  demoAsyncCall = () => {
+    return new Promise(resolve => setTimeout(() => resolve(), 2500));
+  };
+
+  onSubmit = () => {
+    console.log("submeti");
+    // this.demoAsyncCall().then(response => {
+    //   this.setState({ presentes: [] });
+    // });
+
+    this.state.presentes.map(value => {
+      console.log("estou enviando o payload ", value);
+
+      const payload = {
+        gift: value.gift,
+        name: value.name
+      };
+
+      axios
+        .post("/gifts/toggle", payload)
+        .then(response => {
+          console.log("payload com sucesso ", payload);
+          this.setState({ presentes: [] });
+        })
+        .catch(function(error) {
+          console.log("erro: ", error);
+        });
     });
   };
 
   render() {
+    const { data, loading } = this.state;
     return (
       <div className="root">
         <NavBar />
-        <CheckboxList data={data} onChange={e => this.onChange(e)} />
+        {loading ? <Loader /> : null}
+        {data.length !== 0 ? (
+          <CheckboxList data={data} onChange={e => this.onChange(e)} />
+        ) : null}
 
-        <Footer>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => console.log(this.state.presentes)}
-          >
-            Submeter presente(s)
-          </Button>
-        </Footer>
+        <Footer
+          payload={this.state.presentes}
+          onClick={() => this.onSubmit()}
+        />
       </div>
     );
   }
