@@ -73,6 +73,17 @@ class home extends Component {
       <div className="root">
         <NavBar />
         {loading ? <Loader /> : null}
+        <div className="mainText">
+          <p>
+            Esta é apenas uma lista de sugestões, outros presentes também são
+            bem-vindos!
+          </p>
+          <p>
+            Ao definir o presente lembre de marcar aqui para que outro convidado
+            não compre o mesmo outra vez! O preço serve como referência dos
+            valores médios do mercado.
+          </p>
+        </div>
         {data.length !== 0 ? (
           <CheckboxList data={data} onChange={e => this.onChange(e)} />
         ) : null}
