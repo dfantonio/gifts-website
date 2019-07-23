@@ -43,21 +43,16 @@ class home extends Component {
   };
 
   onSubmit = () => {
-    console.log("submeti");
-    // this.demoAsyncCall().then(response => {
-    //   this.setState({ presentes: [] });
-    // });
-
     this.state.presentes.map(value => {
-      console.log("estou enviando o payload ", value);
-
       const payload = {
         gift: value.gift,
-        name: value.name
+        check: true,
+        name: value.name,
+        mensagem: value.mensagem
       };
 
       axios
-        .post("/gifts/toggle", payload)
+        .post("/gifts/update", payload)
         .then(response => {
           console.log("payload com sucesso ", payload);
           this.setState({ presentes: [] });
