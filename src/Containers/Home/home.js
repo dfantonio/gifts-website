@@ -17,6 +17,7 @@ class home extends Component {
   };
 
   componentDidMount = () => {
+    console.log("Versão 1.0.2");
     axios
       .get("/gifts")
       .then(response => {
