@@ -7,6 +7,7 @@ import List from "@material-ui/core/List";
 import React from "react";
 import PropTypes from "prop-types";
 
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -24,7 +25,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     borderRadius: 20,
     border: "solid",
-    borderColor: theme.palette.secondary.main
+    borderColor: theme.palette.secondary.main,
+    maxHeight: "70vh",
+    overflow: "auto"
   },
   paper: {
     position: "absolute",
@@ -77,15 +80,15 @@ export default function CheckboxList({ data, onChange }) {
             <Checkbox
               edge="start"
               checked={value.check}
-              tabIndex={-1}
+              // tabIndex={-1}
               disableRipple
             />
           </ListItemIcon>
           <ListItemText
-            style={{ textAlign: "center" }}
-            id={index}
+            style={{ textAlign: "center", marginRight: 20 }}
             primary={value.gift}
           />
+          <ListItemSecondaryAction>R$ {value.valor}</ListItemSecondaryAction>
         </ListItem>
       );
     });
