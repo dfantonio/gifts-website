@@ -56,7 +56,7 @@ export default function CheckboxList({ data, onChange }) {
     );
     setState(newData);
     newData[index].name = userName;
-    newData[index].message = userMessage;
+    newData[index].mensagem = userMessage;
     onChange(newData[index]);
   };
 
