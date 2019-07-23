@@ -84,10 +84,7 @@ export default function CheckboxList({ data, onChange }) {
               disableRipple
             />
           </ListItemIcon>
-          <ListItemText
-            style={{ textAlign: "center", marginRight: 20 }}
-            primary={value.gift}
-          />
+          <ListItemText style={{ marginRight: 20 }} primary={value.gift} />
           <ListItemSecondaryAction>R$ {value.valor}</ListItemSecondaryAction>
         </ListItem>
       );
