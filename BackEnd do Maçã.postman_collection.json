@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "7485a67f-1650-4ca6-b394-382701d734c6",
+		"name": "BackEnd do Maçã",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ListAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/gifts",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gifts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddOne",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"check\": false,\n\t\"valor\": 30,\n\t\"gift\": \"Livro: O Navio dos Mortos - Volume 3. Série Magnus Chase e os Deuses de Asgard\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/gifts",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gifts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Toggle",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"gift\": \"O Navio dos Mortos - Volume 3. Série Magnus Chase e os Deuses de Asgard\"\n    }"
+				},
+				"url": {
+					"raw": "{{url}}/gifts/toggle",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gifts",
+						"toggle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteOne",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"gift\": \"O Navio dos Mortos - Volume 3. Série Magnus Chase e os Deuses de Asgard\"\n    }"
+				},
+				"url": {
+					"raw": "{{url}}/gifts/delete",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gifts",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"gift\": \"SSD Kingston 240 GB\",\n        \"check\": false,\n        \"mensagem\": \"\",\n        \"name\": \"\"\n    }"
+				},
+				"url": {
+					"raw": "{{url}}/gifts/update",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gifts",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "e756afcc-c108-4d90-8ac2-664d83fa6f77",
+			"key": "url",
+			"value": "10.20.20.195",
+			"type": "string"
+		}
+	]
+}

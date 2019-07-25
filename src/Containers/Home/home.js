@@ -17,6 +17,7 @@ class home extends Component {
   };
 
   componentDidMount = () => {
+    console.log("Versão 1.0.2");
     axios
       .get("/gifts")
       .then(response => {
@@ -43,21 +44,16 @@ class home extends Component {
   };
 
   onSubmit = () => {
-    console.log("submeti");
-    // this.demoAsyncCall().then(response => {
-    //   this.setState({ presentes: [] });
-    // });
-
     this.state.presentes.map(value => {
-      console.log("estou enviando o payload ", value);
-
       const payload = {
         gift: value.gift,
-        name: value.name
+        check: true,
+        name: value.name,
+        mensagem: value.mensagem
       };
 
       axios
-        .post("/gifts/toggle", payload)
+        .post("/gifts/update", payload)
         .then(response => {
           console.log("payload com sucesso ", payload);
           this.setState({ presentes: [] });
@@ -77,6 +73,17 @@ class home extends Component {
       <div className="root">
         <NavBar />
         {loading ? <Loader /> : null}
+        <div className="mainText">
+          <p>
+            Esta é apenas uma lista de sugestões, outros presentes também são
+            bem-vindos!
+          </p>
+          <p>
+            Ao definir o presente lembre de marcar aqui para que outro convidado
+            não compre o mesmo outra vez! O preço serve como referência dos
+            valores médios do mercado.
+          </p>
+        </div>
         {data.length !== 0 ? (
           <CheckboxList data={data} onChange={e => this.onChange(e)} />
         ) : null}

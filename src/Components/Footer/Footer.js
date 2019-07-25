@@ -88,7 +88,7 @@ export default function StickyFooter({ onClick, payload }) {
               }
             }}
           >
-            Confirma esse presente?
+            Confirmo o presente
           </Button>
           {loading && (
             <CircularProgress size={24} className={classes.buttonProgress} />
