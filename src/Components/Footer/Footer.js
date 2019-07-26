@@ -59,10 +59,8 @@ export default function StickyFooter({ onClick, payload }) {
   });
 
   React.useEffect(() => {
-    console.log("useEffect");
     if (oldPayload.length < payload.length) setOldPayload(payload);
     if (oldPayload.length > payload.length) {
-      console.log("zerei");
       setSuccess(true);
       setLoading(false);
       setOldPayload(payload);
@@ -80,7 +78,6 @@ export default function StickyFooter({ onClick, payload }) {
             className={buttonClassname}
             disabled={loading || (!payload.length && !success)}
             onClick={() => {
-              console.log("dentro do onClick ", payload);
               if (payload.length) {
                 setSuccess(false);
                 setLoading(true);

@@ -18,15 +18,15 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   root: {
+    padding: 0,
     width: "100%",
-    maxWidth: 360,
+    maxWidth: 450,
     margin: "auto",
-    marginTop: "3%",
     backgroundColor: theme.palette.background.paper,
     borderRadius: 20,
     border: "solid",
     borderColor: theme.palette.secondary.main,
-    maxHeight: "70vh",
+    maxHeight: "100%",
     overflow: "auto"
   },
   paper: {
