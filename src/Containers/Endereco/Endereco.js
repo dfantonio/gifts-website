@@ -10,7 +10,8 @@ import NavBar from "../../Components/NavBar/NavBar";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    height: "100vh",
+    width: "100vw"
   },
   paper: {
     padding: theme.spacing(2),
@@ -18,18 +19,77 @@ const useStyles = makeStyles(theme => ({
     marginBlockStart: "0px",
     height: "100%"
   },
+  customFont: {
+    fontFamily: "Just Another Hand",
+    textIndent: "20px",
+    fontSize: "xx-large"
+  },
   container: {
+    paddingTop: "3vh",
     width: "100%",
     margin: 0
   },
-  textHeader: {
-    borderBottom: "1px solid #E8E8E8",
-    marginBottom: "10px"
+  image: {
+    maxWidth: "100%",
+    height: "auto"
+  },
+  centerAll: {
+    display: "flex",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center"
   }
 }));
 
 export default function Home() {
-  // const classes = useStyles();
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <NavBar />
+      <Grid container spacing={3} className={classes.container}>
+        <div className={classes.centerAll}>
+          <Grid item xs={12} sm={6}>
+            <Paper className={classes.paper}>
+              <Typography variant="body1">
+                Pessoal, para aqueles que preferirem pernoitar em Santo Antônio,
+                seja pra aproveitar a estadia seja porque querem beber um
+                pouquinho... encontramos o seguinte:
+              </Typography>
+              <Grid container spacing={3} className={classes.container}>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="h6">Pousada dos Oliveiras</Typography>
+                  <Typography variant="body1">
+                    fica pertinho de casa, tem apartamentos com ar condicionado,
+                    banheiro e café da manhã. <br />O preço é R$ 140,00 pro
+                    casal. Fone de contato: Sr Adroaldo, (51)3662 6793
+                    <br />
+                    <a
+                      target="_blank"
+                      href="https://www.pousadadosoliveiras.com.br/"
+                    >
+                      pousadadosoliveiras.com
+                    </a>
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="h6">Hotel EcoVilly</Typography>
+                  <Typography variant="body1">
+                    Apartamentos variam de 200,00 a 250,00. <br />
+                    Fone de contato: (51) 3199 7000
+                    <br />
+                    <a target="_blank" href="http://www.hotelecovilly.com.br/">
+                      hotelecovilly.com
+                    </a>
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+        </div>
+      </Grid>
+    </div>
+  );
 
   return (
     <div class="oi">

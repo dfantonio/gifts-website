@@ -120,7 +120,7 @@ export default function Home() {
             size="large"
             fullWidth
           >
-            Local da festa
+            Hospedagem
           </Button>
         </Grid>
       </Grid>
